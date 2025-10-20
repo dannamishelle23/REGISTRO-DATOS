@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Galeria de recibos
+    </ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- Contador de recibos -->
+  <div *ngIf="photoService.photos.length > 0" class="photo-counter">
+    <h2>Recibos registrados: {{ photoService.photos.length }}</h2>
+  </div>
+
+  <!-- Mensaje cuando no hay recibos -->
+  <div *ngIf="photoService.photos.length === 0" class="no-photos">
+    <h2>No hay recibos registrados</h2>
+    <p>Puedes agregar tus facturas desde la pestaña anterior</p>
+  </div>
+
+  <!-- Lista de recibos -->
+  <div *ngIf="photoService.photos.length > 0">
+    <ion-card *ngFor="let photo of photoService.photos">
+      <ion-card-content>
+        <!-- Foto del recibo -->
+        <img [src]="photo.webviewPath" alt="Foto del recibo">
+        
+        <!-- Detalles del gasto -->
+        <div *ngIf="photo.note">
+          <h3>Detalles del gasto:</h3>
+          <p>{{ photo.note }}</p>
+        </div>
+        <p *ngIf="!photo.note" class="muted">Sin detalles registrados</p>
+
+        <!-- Botón eliminar -->
+        <div class="ion-text-end">
+          <ion-button fill="clear" color="danger" (click)="eliminarRecibo(photo)">
+            <ion-icon name="trash"></ion-icon>
+            Eliminar
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

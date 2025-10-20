@@ -1,0 +1,46 @@
+.photo-counter {
+  text-align: center;
+  margin: 15px 0;
+}
+
+.no-photos {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+/* Estilos para las tarjetas de recibos */
+ion-card {
+  margin: 10px;
+  background: #fff;
+}
+
+/* Imagen del recibo */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Texto y detalles */
+h3 {
+  color: #333;
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+p {
+  color: #666;
+  font-size: 15px;
+  margin: 5px 0;
+}
+
+.muted {
+  color: #999;
+  font-style: italic;
+}
+
+/* Espaciado básico */
+ion-card-content {
+  padding: 15px;
+}

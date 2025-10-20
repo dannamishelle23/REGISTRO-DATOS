@@ -1,0 +1,46 @@
+ion-card {
+  margin: 16px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.custom-input {
+  padding: 8px;
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+ion-textarea.custom-input {
+  padding-top: 5px;
+}
+
+.receipt-preview {
+  margin: 16px auto;
+  max-width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.text-muted {
+  color: rgb(0, 0, 0);
+  font-size: 0.9em;
+}
+
+// Estilos para los botones
+ion-button {
+  margin: 8px 0;
+  border-radius: 10px;
+  background-color: rgb(11, 75, 75);
+}
+
+// Espaciado para los items del formulario
+ion-item {
+  padding: 0;
+  background: transparent;
+  margin-bottom: 8px;
+}
+
+// Mejora visual para campos requeridos
+ion-label[position="floating"] {
+  color: var(--ion-color-primary);
+}

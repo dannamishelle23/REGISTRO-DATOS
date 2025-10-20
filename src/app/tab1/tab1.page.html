@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Resumen de Gastos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h1>Gastos recientes</h1>
+  <div *ngIf="photoService.photos.length === 0" class="no-gastos">
+    <h3>No hay gastos registrados. Ve a "Nuevo gasto" para registrar uno.</h3>
+  </div>
+
+  <div *ngIf="photoService.photos.length > 0">
+    <ion-list>
+      <ion-item *ngFor="let photo of photoService.photos">
+        <ion-label>
+          <h2>{{ getDescripcion(photo.note || '') }}</h2>
+          <h3>{{ getMonto(photo.note || '') }}</h3>
+          <h3>Pagado por: {{ getPagador(photo.note || '') }}</h3>
+          <p>Recibo verificado.</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

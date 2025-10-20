@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Nuevo Gasto
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-content>
+      <form (ngSubmit)="guardarGasto()">
+        <ion-item>
+          <ion-label position="floating">Descripción del gasto</ion-label>
+          <ion-input [(ngModel)]="gasto.descripcion" name="descripcion" required placeholder="Ej: Cena en restaurante" class="custom-input"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Monto total</ion-label>
+          <ion-input [(ngModel)]="gasto.monto" name="monto" type="number" required placeholder="0.00" min="0" class="custom-input"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">¿Quién pagó?</ion-label>
+          <ion-input [(ngModel)]="gasto.pagador" name="pagador" class="custom-input"></ion-input>
+        </ion-item>
+
+        <!-- Foto del recibo -->
+        <div class="ion-text-center ion-margin-top">
+          <h2>Foto del recibo</h2>
+          <p *ngIf="!gasto.foto" class="text-muted">
+            Es necesario tomar una foto del recibo para registrar el gasto
+          </p>
+          
+          <!-- Botón de cámara -->
+          <ion-button (click)="addPhotoToGallery()" [color]="gasto.foto ? 'success' : 'primary'" class="ion-margin-top">
+            <ion-icon slot="start" [name]="gasto.foto ? 'camera' : 'image'"></ion-icon>
+            {{ gasto.foto ? 'Cambiar foto' : 'Tomar foto' }}
+          </ion-button>
+        </div>
+
+        <!-- Vista previa de la foto -->
+        <ion-img *ngIf="gasto.foto" [src]="gasto.foto" class="receipt-preview ion-margin-top"></ion-img>
+
+        <div class="ion-padding">
+          <ion-button expand="block" type="submit" [disabled]="!gasto.foto">
+            <ion-icon slot="start" name="save"></ion-icon>
+            Guardar gasto con recibo
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
