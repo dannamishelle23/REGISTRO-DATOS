@@ -3,10 +3,42 @@
     <ion-title>
       Resumen de Gastos
     </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="abrirCalendario()">
+        <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+    <ion-modal [isOpen]="mostrarCalendario"
+    (didDismiss)="cerrarCalendario()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Buscar gasto por fecha</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="cerrarCalendario()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="ion-padding">
+        <ion-datetime
+          presentation="date"
+          [(ngModel)]="fechaFiltro"
+        ></ion-datetime>
+
+        <ion-button expand="block" color="success" (click)="filtrarPorFecha()">
+          Buscar gastos
+        </ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
   <h1>Gastos recientes</h1>
   <div *ngIf="photoService.photos.length === 0" class="no-gastos">
     <h3>No hay gastos registrados. Ve a "Nuevo gasto" para registrar uno.</h3>
@@ -19,9 +51,32 @@
           <h2>{{ getDescripcion(photo.note || '') }}</h2>
           <h3>{{ getMonto(photo.note || '') }}</h3>
           <h3>Pagado por: {{ getPagador(photo.note || '') }}</h3>
+          <h3>Fecha registro: {{ getFecha(photo.note || '') }}</h3>
           <p>Recibo verificado.</p>
         </ion-label>
       </ion-item>
     </ion-list>
+    
+    <!-- RESULTADO DE BÚSQUEDA -->
+    <div *ngIf="gastosporFecha.length > 0" style="margin-top: 30px;">
+      <h1>Gastos en la fecha seleccionada</h1>
+      <ion-list>
+        <ion-item *ngFor="let photo of gastosporFecha">
+          <ion-label>
+            <h2>{{ getDescripcion(photo.note || '') }}</h2>
+            <h3>{{ getMonto(photo.note || '') }}</h3>
+            <h3>Pagado por: {{ getPagador(photo.note || '') }}</h3>
+            <h3>Fecha registro: {{ getFecha(photo.note || '') }}</h3>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!-- Si no se encuentran resultados -->
+    <div *ngIf="busquedaRealizada && gastosporFecha.length === 0">
+      <h3>No se encontraron gastos para esa fecha.</h3>
+    </div>
   </div>
+
+  <h1>Total de gastos por mes</h1>
 </ion-content>

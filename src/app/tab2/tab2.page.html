@@ -10,19 +10,34 @@
   <ion-card>
     <ion-card-content>
       <form (ngSubmit)="guardarGasto()">
+        <!-- Descripción -->
         <ion-item>
           <ion-label position="floating">Descripción del gasto</ion-label>
           <ion-input [(ngModel)]="gasto.descripcion" name="descripcion" required placeholder="Ej: Cena en restaurante" class="custom-input"></ion-input>
         </ion-item>
 
+        <!-- Monto total -->
         <ion-item>
           <ion-label position="floating">Monto total</ion-label>
           <ion-input [(ngModel)]="gasto.monto" name="monto" type="number" required placeholder="0.00" min="0" class="custom-input"></ion-input>
         </ion-item>
 
+         <!-- Persona que pagó -->
         <ion-item>
           <ion-label position="floating">¿Quién pagó?</ion-label>
           <ion-input [(ngModel)]="gasto.pagador" name="pagador" class="custom-input"></ion-input>
+        </ion-item>
+
+        <!-- Fecha del gasto -->
+        <ion-item>
+          <ion-label position="floating">Fecha del registro</ion-label>
+            <ion-datetime
+              presentation="date"
+              [(ngModel)]="gasto.fecha"
+              name="fecha-gasto"
+              class="custom-input"
+              [formatOptions]="{ date: 'short' }"
+            ></ion-datetime>
         </ion-item>
 
         <!-- Foto del recibo -->

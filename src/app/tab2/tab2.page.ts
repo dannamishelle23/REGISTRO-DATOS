@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotoService } from '../../app/services/photo';
 import { AlertController } from '@ionic/angular';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-tab2',
@@ -15,7 +14,7 @@ export class Tab2Page implements OnInit {
     descripcion: '',
     monto: 0,
     pagador: '',
-    participantes: '',
+    fecha: new Date().toISOString(),
     foto: null as string | null
   };
 
@@ -39,7 +38,7 @@ export class Tab2Page implements OnInit {
     try {
       // Actualizamos la última foto con los detalles del gasto
       if (this.photoService.photos.length > 0) {
-        const detalles = `${this.gasto.descripcion}\nMonto: $${this.gasto.monto}\nPagó: ${this.gasto.pagador}\nParticipantes: ${this.gasto.participantes}`;
+        const detalles = `${this.gasto.descripcion}\nMonto: $${this.gasto.monto}\nPagó: ${this.gasto.pagador}\nFecha registro: ${this.gasto.fecha.split('T')[0]}`;
         await this.photoService.updatePhotoNote(this.photoService.photos[0], detalles);
         
         await this.alertCtrl.create({
@@ -83,7 +82,7 @@ export class Tab2Page implements OnInit {
       descripcion: '',
       monto: 0,
       pagador: '',
-      participantes: '',
+      fecha: new Date().toISOString(),
       foto: null
     };
   }
