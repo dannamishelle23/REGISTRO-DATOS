@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { PhotoService } from '../../app/services/photo';
-import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',

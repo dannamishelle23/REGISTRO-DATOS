@@ -79,4 +79,17 @@
   </div>
 
   <h1>Total de gastos por mes</h1>
+
+  <ion-list *ngIf="gastoTotalPorMes.length > 0">
+    <ion-item *ngFor="let item of gastoTotalPorMes">
+      <ion-label>
+        <h2>{{ item.mes | titlecase }}</h2>
+        <h3>Total: ${{ item.total.toFixed(2) }}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="gastoTotalPorMes.length === 0">
+    <p>No hay gastos registrados aún.</p>
+  </div>
 </ion-content>
